@@ -7,8 +7,8 @@ import Login from './components/Login'
 const App = () => {
   return (
       <Routes>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/*" element={<Home />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/*" element={<Home />}></Route>
       </Routes>
   )
 }
