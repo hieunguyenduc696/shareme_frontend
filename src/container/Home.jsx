@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { HiMenu } from 'react-icons/hi'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { Link, Route, Routes } from 'react-router-dom'
 
-import { Sidebar, UserProfile } from '../components'
+import { Sidebar, UserProfile, Spinner } from '../components'
 import Pins from './Pins'
 import { userQuery } from '../utils/data'
 import { client } from '../client'
@@ -13,8 +13,6 @@ import { fetchUser } from '../utils/fetchUser'
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false)
   const [user, setUser] = useState(null)
-  const scrollRef = useRef(null)
-  
   const userInfo = fetchUser()
 
   useEffect(() => {
@@ -25,11 +23,7 @@ const Home = () => {
       })
   }, [userInfo?.googleId])
 
-  // useEffect(() => {
-  //   scrollRef.current.scrollTo(0, 0)
-  // }, [])
-
-  if (!user) return "loading..."
+  if (!user) return <Spinner />
 
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
